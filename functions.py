@@ -52,8 +52,8 @@ def get_data(file):
 def check_file_string(line):
     keys = ('product_name', 'quantity', 'price', 'date')
     line_new = [_.strip() for _ in line] if isinstance(line, list) else [_.strip() for _ in line.split(',')]
-    chech = sum([(len(line_new) == 4), line_new[1].isnumeric(), line_new[2].isnumeric()])
-    if chech == 3:
+    chech = (len(line_new) == 4) and line_new[1].isnumeric() and line_new[2].isnumeric()
+    if chech:
         line_new[1] = int(line_new[1])
         line_new[2] = int(line_new[2])
         return dict(zip(keys, line_new))
